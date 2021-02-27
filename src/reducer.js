@@ -35,6 +35,22 @@ const reducer = (state, action) => {
             });
             return { ...state, cart: tempCart };
         }
+        case "GET_TOTALS": {
+            let cart = state.cart;
+            let { total, amount } = cart.reduce(
+                (cartTotal, cartItem) => {
+                    cartTotal.amount += cartItem.amount;
+                    cartTotal.total += cartItem.amount * cartItem.price;
+                    return cartTotal;
+                },
+                {
+                    total: 0,
+                    amount: 0,
+                }
+            );
+            total = parseFloat(total.toFixed(2));
+            return { ...state, total, amount };
+        }
         default:
             throw new Error("You idiot. You forgot about something");
     }
