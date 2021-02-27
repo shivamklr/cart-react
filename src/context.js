@@ -19,20 +19,23 @@ const AppProvider = ({ children }) => {
         console.log("clear cart clicked");
         dispatch({ type: "CLEAR_CART" });
     };
-    const remove = (id)=>{
-        dispatch({type:"REMOVE", payload:{id}})
-    }
-    const increase = (id)=>{
-        dispatch({type:"INCREASE", payload:{id}})
-    }
-
+    const remove = (id) => {
+        dispatch({ type: "REMOVE", payload: { id } });
+    };
+    const increase = (id) => {
+        dispatch({ type: "INCREASE", payload: { id } });
+    };
+    const decrease = (id) => {
+        dispatch({ type: "DECREASE", payload: { id } });
+    };
     return (
         <AppContext.Provider
             value={{
                 ...state,
                 clearCart,
                 remove,
-                increase
+                increase,
+                decrease
             }}
         >
             {children}
