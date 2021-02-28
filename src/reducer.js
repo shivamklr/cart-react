@@ -51,8 +51,12 @@ const reducer = (state, action) => {
             total = parseFloat(total.toFixed(2));
             return { ...state, total, amount };
         }
+        case "LOADING":
+            return { ...state, loading: true };
+        case "DISPLAY":
+            return { ...state, cart: action.payload.data, loading: false };
         default:
-            throw new Error("You idiot. You forgot about something");
+            throw new Error("no matching action type");
     }
 };
 export default reducer;
